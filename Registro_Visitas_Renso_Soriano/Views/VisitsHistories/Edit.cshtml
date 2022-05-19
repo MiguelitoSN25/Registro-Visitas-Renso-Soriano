@@ -1,0 +1,38 @@
+﻿@model Registro_Visitas_Renso_Soriano.Data.VisitsHistory
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>VisitsHistory</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="VisitsId" />
+                        <input type="hidden" asp-for="VisitorId" />
+            <input type="hidden" asp-for="Subject" />
+            <input type="hidden" asp-for="Date" />
+            <input type="hidden" asp-for="DateIncome" />
+            <div class="form-group">
+                <label asp-for="DateDeparture" class="control-label"></label>
+                <input asp-for="DateDeparture" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")"/>
+                <span asp-validation-for="DateDeparture" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
