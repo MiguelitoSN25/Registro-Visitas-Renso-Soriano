@@ -26,14 +26,14 @@ namespace Registro_Visitas_Renso_Soriano.Controllers
             if (string.IsNullOrEmpty(search))
             {
                 var appDbContext = _context.EventsAssignations.
-                    Include(e => e.Events).Include(e => e.Visitors);
+                    Include(e => e.Events).Include(e => e.Date);
                 return View(await appDbContext.ToListAsync());
 
             }
             else
             {
                 var appDbContext = _context.EventsAssignations.
-                    Include(e => e.Events).Include(e => e.Visitors);
+                    Include(e => e.Events).Include(e => e.Date);
 
                 return View(await appDbContext.ToListAsync());
 
