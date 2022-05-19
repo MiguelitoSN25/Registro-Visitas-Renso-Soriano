@@ -6,6 +6,8 @@ namespace Registro_Visitas_Renso_Soriano.Data
 {
     public class VisitsHistory
     {
+        //Modelo que utiliza la app para conectarse a el historia de eventos
+
 
         [Key]
         public int VisitsId { get; set; }

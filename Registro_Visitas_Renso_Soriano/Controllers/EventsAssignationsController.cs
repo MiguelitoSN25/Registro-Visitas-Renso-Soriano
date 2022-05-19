@@ -18,7 +18,7 @@ namespace Registro_Visitas_Renso_Soriano.Controllers
             _context = context;
         }
 
-        // GET: EventsAssignations
+        //Metodo que busca si utiliza los valores suministrados para realizar la busqueda
         public async Task<IActionResult> Index(string search = null)
         {
             ViewData[nameof(search)] = search;

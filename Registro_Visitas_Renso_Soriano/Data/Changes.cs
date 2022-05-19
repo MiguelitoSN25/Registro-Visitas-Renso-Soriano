@@ -5,6 +5,8 @@ namespace Registro_Visitas_Renso_Soriano.Data
 {
     public class Changes
     {
+        //Tabla de cambios y o Movimientos
+
         [Key]
         public int IdChanges { get; set; }
         [DisplayName("Cambios")]

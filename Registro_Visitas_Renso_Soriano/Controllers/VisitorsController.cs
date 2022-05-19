@@ -17,6 +17,7 @@ namespace Registro_Visitas_Renso_Soriano.Controllers
         {
             _context = context;
         }
+        //Metodo que busca si utiliza los valores suministrados para realizar la busqueda
 
         // GET: Visitors
         public async Task<IActionResult> Index(string search = null)
@@ -34,7 +35,7 @@ namespace Registro_Visitas_Renso_Soriano.Controllers
             }
         }
 
-        // GET: Visitors/Details/5
+        //Metodo que ve los detalles de los valores suministrados para realizar la busqueda
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Visitors == null)
@@ -57,10 +58,7 @@ namespace Registro_Visitas_Renso_Soriano.Controllers
         {
             return View();
         }
-
-        // POST: Visitors/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //Metodo que inserta los datos a la base de datos
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("VisitorId,Name,LastName,Last_Date_Register")] Visitors visitors)
@@ -74,7 +72,7 @@ namespace Registro_Visitas_Renso_Soriano.Controllers
             return View(visitors);
         }
 
-        // GET: Visitors/Edit/5
+        //Metodo que actualiza  los datos a la base de datos
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Visitors == null)
@@ -90,9 +88,8 @@ namespace Registro_Visitas_Renso_Soriano.Controllers
             return View(visitors);
         }
 
-        // POST: Visitors/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //Metodo que inserta los datos a la base de datos
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("VisitorId,Name,LastName,Last_Date_Register")] Visitors visitors)
@@ -125,7 +122,7 @@ namespace Registro_Visitas_Renso_Soriano.Controllers
             return View(visitors);
         }
 
-        // GET: Visitors/Delete/5
+        //Metodo que borra los datos de la base de datos
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Visitors == null)
@@ -142,6 +139,8 @@ namespace Registro_Visitas_Renso_Soriano.Controllers
 
             return View(visitors);
         }
+
+        //Metodo que borra los datos de la base de datos
 
         // POST: Visitors/Delete/5
         [HttpPost, ActionName("Delete")]

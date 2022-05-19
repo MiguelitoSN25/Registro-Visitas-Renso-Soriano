@@ -6,6 +6,8 @@ namespace Registro_Visitas_Renso_Soriano.Data
 {
     public class EventsAssignation
     {
+        //Modelo que utiliza la app para conectarse a la asignacion de eventos
+
         [Key]
         public int IdEventsAssignation { get; set; }
 

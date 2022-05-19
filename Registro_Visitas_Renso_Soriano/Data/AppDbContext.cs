@@ -4,7 +4,7 @@ namespace Registro_Visitas_Renso_Soriano.Data
 {
     public class AppDbContext : DbContext
     {
-
+        //Contexto que utiliza la app para conectarse a la bd
         public AppDbContext()
         {
         }
