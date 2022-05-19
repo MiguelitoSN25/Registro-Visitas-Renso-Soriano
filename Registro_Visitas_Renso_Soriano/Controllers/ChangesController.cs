@@ -19,11 +19,19 @@ namespace Registro_Visitas_Renso_Soriano.Controllers
         }
 
         // GET: Changes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search = null)
         {
-              return _context.Changes != null ? 
-                          View(await _context.Changes.ToListAsync()) :
-                          Problem("Entity set 'AppDbContext.Changes'  is null.");
+            ViewData[nameof(search)] = search;
+            if (string.IsNullOrEmpty(search))
+            {
+                return View(await _context.Changes.ToListAsync());
+            }
+            else
+            {
+                return View(await _context.Changes
+                    .Where(a => a.ChangesNames.Contains(search)).
+                    ToListAsync());
+            }
         }
 
         // GET: Changes/Details/5
