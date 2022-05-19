@@ -26,14 +26,18 @@ namespace Registro_Visitas_Renso_Soriano.Controllers
             if (string.IsNullOrEmpty(search))
             {
                 var appDbContext = _context.EventsAssignations.
-                    Include(e => e.Events).Include(e => e.Date);
+                    Include(e => e.Events)
+                    .Include(e => e.Visitors);
                 return View(await appDbContext.ToListAsync());
 
             }
             else
             {
                 var appDbContext = _context.EventsAssignations.
-                    Include(e => e.Events).Include(e => e.Date);
+                    Include(e => e.Events)
+                       .Include(e => e.Visitors)
+                  .Where(a => a.Events.EventName.Contains(search)|| a.Visitors.Name.Contains(search));
+
 
                 return View(await appDbContext.ToListAsync());
 
@@ -63,8 +67,8 @@ namespace Registro_Visitas_Renso_Soriano.Controllers
         // GET: EventsAssignations/Create
         public IActionResult Create()
         {
-            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventId");
-            ViewData["VisitorId"] = new SelectList(_context.Visitors, "VisitorId", "LastName");
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventName");
+            ViewData["VisitorId"] = new SelectList(_context.Visitors, "VisitorId", "Name");
             return View();
         }
 
@@ -81,8 +85,8 @@ namespace Registro_Visitas_Renso_Soriano.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventId", eventsAssignation.EventId);
-            ViewData["VisitorId"] = new SelectList(_context.Visitors, "VisitorId", "LastName", eventsAssignation.VisitorId);
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventName", eventsAssignation.EventId);
+            ViewData["VisitorId"] = new SelectList(_context.Visitors, "VisitorId", "Name", eventsAssignation.VisitorId);
             return View(eventsAssignation);
         }
 

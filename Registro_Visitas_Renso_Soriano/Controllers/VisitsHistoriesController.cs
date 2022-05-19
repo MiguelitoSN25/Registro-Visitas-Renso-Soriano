@@ -25,19 +25,15 @@ namespace Registro_Visitas_Renso_Soriano.Controllers
 
             if (string.IsNullOrEmpty(search))
             {
-                var appDbContext = _context.VisitsHistories.
-                    Include(v => v.Date)
-                   .Include(v => v.Subject);
-
+                var appDbContext = _context.VisitsHistories.Include(v => v.Visitors);
                 return View(await appDbContext.ToListAsync());
 
             }
             else
             {
-                var appDbContext = _context.VisitsHistories
-                   .Include(v => v.Date)
-                   .Include(v => v.Subject)
-              .Where(v => v.Subject.Contains(search));
+                var appDbContext = _context.VisitsHistories.
+                    Include(_ => _.Visitors)
+                    .Where(a => a.Visitors.Name.Contains(search) || a.Visitors.LastName.Contains(search) || a.Subject.Contains(search));
 
                 return View(await appDbContext.ToListAsync());
 
@@ -170,7 +166,7 @@ namespace Registro_Visitas_Renso_Soriano.Controllers
             return View(visitsHistory);
         }
 
-        // GET: VisitsHistories sirve para realizar la borrar de info en la app
+        // GET: VisitsHistories sirve para realizar la insertar de info en la app
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.VisitsHistories == null)
